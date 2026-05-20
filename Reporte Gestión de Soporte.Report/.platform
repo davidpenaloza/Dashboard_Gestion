@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Reporte Gestión de Soporte"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "fc8c1c94-0dba-4488-b891-1a8df98a9fd5"
+  }
+}

@@ -1,0 +1,304 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.3.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY21SU11",
+      "reportVersionAtImport": {
+        "visual": "1.8.64",
+        "report": "2.0.64",
+        "page": "1.3.64"
+      },
+      "type": "SharedResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "BulletChart1443347686880",
+    "dg5AAA90EFEFE747CB9357C4FC19B85A58",
+    "LinearGauge1450736844786",
+    "linearGauge2EBA8C0A99F94BF297BCCB1CF5427E68",
+    "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F"
+  ],
+  "resourcePackages": [
+    {
+      "name": "BulletChart1443347686880",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "BulletChart1443347686880.pbiviz.json",
+          "path": "BulletChart1443347686880.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "dg5AAA90EFEFE747CB9357C4FC19B85A58",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "dg5AAA90EFEFE747CB9357C4FC19B85A58.pbiviz.json",
+          "path": "dg5AAA90EFEFE747CB9357C4FC19B85A58.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "LinearGauge1450736844786",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "LinearGauge1450736844786.pbiviz.json",
+          "path": "LinearGauge1450736844786.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "linearGauge2EBA8C0A99F94BF297BCCB1CF5427E68",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "linearGauge2EBA8C0A99F94BF297BCCB1CF5427E68.pbiviz.json",
+          "path": "linearGauge2EBA8C0A99F94BF297BCCB1CF5427E68.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F.pbiviz.json",
+          "path": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY21SU11",
+          "path": "BaseThemes/CY21SU11.json",
+          "type": "BaseTheme"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "1_elementos_del_dashboard7650280626332528.png",
+          "path": "1_elementos_del_dashboard7650280626332528.png",
+          "type": "Image"
+        },
+        {
+          "name": "AMSA_LOGO_preview_rev_107432921592930852.png",
+          "path": "AMSA_LOGO_preview_rev_107432921592930852.png",
+          "type": "Image"
+        },
+        {
+          "name": "assignment_late3644646663594242.png",
+          "path": "assignment_late3644646663594242.png",
+          "type": "Image"
+        },
+        {
+          "name": "copiar_grafico_11507160775070122.png",
+          "path": "copiar_grafico_11507160775070122.png",
+          "type": "Image"
+        },
+        {
+          "name": "copiar_grafico_22573594699750059.png",
+          "path": "copiar_grafico_22573594699750059.png",
+          "type": "Image"
+        },
+        {
+          "name": "detalle_133880613465863796.png",
+          "path": "detalle_133880613465863796.png",
+          "type": "Image"
+        },
+        {
+          "name": "detalle_244469875217329746.png",
+          "path": "detalle_244469875217329746.png",
+          "type": "Image"
+        },
+        {
+          "name": "engineering_24dp_E8EAED_FILL0_7424322911182255.png",
+          "path": "engineering_24dp_E8EAED_FILL0_7424322911182255.png",
+          "type": "Image"
+        },
+        {
+          "name": "fondo_degradado7229071948969146.png",
+          "path": "fondo_degradado7229071948969146.png",
+          "type": "Image"
+        },
+        {
+          "name": "Frame_4809559241107818366579685.png",
+          "path": "Frame_4809559241107818366579685.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico_Faena_Producto_24538987622863744.png",
+          "path": "grafico_Faena_Producto_24538987622863744.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico_Faena_Producto_30548675554776763.png",
+          "path": "grafico_Faena_Producto_30548675554776763.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico_Faena_Producto_42534199762414264.png",
+          "path": "grafico_Faena_Producto_42534199762414264.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico_Faena_Producto_55765780981120612.png",
+          "path": "grafico_Faena_Producto_55765780981120612.png",
+          "type": "Image"
+        },
+        {
+          "name": "grafico_Faena_Producto6725115021064223.png",
+          "path": "grafico_Faena_Producto6725115021064223.png",
+          "type": "Image"
+        },
+        {
+          "name": "icono_tooltip8285492677296247.png",
+          "path": "icono_tooltip8285492677296247.png",
+          "type": "Image"
+        },
+        {
+          "name": "insert_invitation830959641762677.png",
+          "path": "insert_invitation830959641762677.png",
+          "type": "Image"
+        },
+        {
+          "name": "Link8053836764902209.png",
+          "path": "Link8053836764902209.png",
+          "type": "Image"
+        },
+        {
+          "name": "logo5302318988070585.png",
+          "path": "logo5302318988070585.png",
+          "type": "Image"
+        },
+        {
+          "name": "Order_Icon1606466331583054.png",
+          "path": "Order_Icon1606466331583054.png",
+          "type": "Image"
+        },
+        {
+          "name": "Padlock_Square006332082116327742.png",
+          "path": "Padlock_Square006332082116327742.png",
+          "type": "Image"
+        },
+        {
+          "name": "Path_Copy_126365030838702883.png",
+          "path": "Path_Copy_126365030838702883.png",
+          "type": "Image"
+        },
+        {
+          "name": "Path_Copy7115254306252192.png",
+          "path": "Path_Copy7115254306252192.png",
+          "type": "Image"
+        },
+        {
+          "name": "restablecer7984139746812136.png",
+          "path": "restablecer7984139746812136.png",
+          "type": "Image"
+        },
+        {
+          "name": "Sales_Icon3625656220086826.png",
+          "path": "Sales_Icon3625656220086826.png",
+          "type": "Image"
+        },
+        {
+          "name": "Sales_Icon5675529684841247.png",
+          "path": "Sales_Icon5675529684841247.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_formula_D6233924656609215.png",
+          "path": "Screenshot_formula_D6233924656609215.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_formula_I3283814291063818.png",
+          "path": "Screenshot_formula_I3283814291063818.png",
+          "type": "Image"
+        },
+        {
+          "name": "Screenshot_forula_BDisp8046957282040432.png",
+          "path": "Screenshot_forula_BDisp8046957282040432.png",
+          "type": "Image"
+        },
+        {
+          "name": "summarize09098163690728622.png",
+          "path": "summarize09098163690728622.png",
+          "type": "Image"
+        },
+        {
+          "name": "thumb_down_alt625889950508677.png",
+          "path": "thumb_down_alt625889950508677.png",
+          "type": "Image"
+        },
+        {
+          "name": "Vector7237333433873565.png",
+          "path": "Vector7237333433873565.png",
+          "type": "Image"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}

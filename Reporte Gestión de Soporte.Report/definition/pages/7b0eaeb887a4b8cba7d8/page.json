@@ -1,0 +1,121 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "7b0eaeb887a4b8cba7d8",
+  "displayName": "Dashboard INC",
+  "displayOption": "FitToPage",
+  "height": 720,
+  "width": 1280,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "137194e6c84e1b0a1bcd",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "DS_Incidencias"
+              }
+            },
+            "Property": "Work Item Type"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "d",
+              "Entity": "DS_Incidencias",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "d"
+                          }
+                        },
+                        "Property": "Work Item Type"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'User Story'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "color": {
+            "solid": {
+              "color": {
+                "expr": {
+                  "ThemeDataColor": {
+                    "ColorId": 0,
+                    "Percent": -0.1
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "68D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "b1e808e0ddd5eaba17ea",
+      "target": "f6e5dcdfe970266612fc",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b1e808e0ddd5eaba17ea",
+      "target": "aa54ae7ee554d357ffd6",
+      "type": "NoFilter"
+    },
+    {
+      "source": "aa54ae7ee554d357ffd6",
+      "target": "71b11c5bfb80e52f3cd9",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b1e808e0ddd5eaba17ea",
+      "target": "185c9460834b764952a2",
+      "type": "DataFilter"
+    },
+    {
+      "source": "aa54ae7ee554d357ffd6",
+      "target": "9d08663b8c531177a54d",
+      "type": "DataFilter"
+    }
+  ]
+}
