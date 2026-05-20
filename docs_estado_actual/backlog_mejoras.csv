@@ -1,0 +1,11 @@
+ID,Categoría,Mejora,Prioridad,Complejidad,Impacto,Riesgo,Horizonte,Responsable sugerido,Requiere validación funcional,Requiere validación técnica,Evidencia
+M01,Quick win,Parametrizar URL/Project/Team/QueryID en M,Alta,Media,Alto,Bajo,Corto,BI Técnico,Sí,Sí,Reporte Gestión de Soporte.SemanticModel/definition/tables/DS_Incidencias.tmdl:L474-L493
+M02,Refactorización de modelo,Crear dimensión Fecha única y retirar auto-date,Alta,Media,Alto,Medio,Corto,BI Modelado,Sí,Sí,Reporte Gestión de Soporte.SemanticModel/definition/model.tmdl:L11-L24
+M03,Cambio estructural,Mover FechaTomaDeControl a tabla de parametrización,Alta,Media,Alto,Medio,Corto,BI + Negocio,Sí,Sí,Reporte Gestión de Soporte.SemanticModel/definition/tables/DS_Incidencias.tmdl:L176-L189
+M04,Refactorización técnica,Consolidar Functions y FunctionsNew,Media,Media,Medio,Medio,Mediano,BI Técnico,No,Sí,Reporte Gestión de Soporte.SemanticModel/definition/model.tmdl:L16-L17
+M05,Quick win,Consolidar medidas Inc* con medida base,Media,Baja,Medio,Bajo,Corto,BI DAX,Sí,Sí,Reporte Gestión de Soporte.SemanticModel/definition/tables/DS_Incidencias.tmdl:L10-L63
+M06,Mejora visual,Reducir densidad de visuales en páginas clave,Alta,Media,Alto,Bajo,Corto,BI UX,Sí,Sí,Reporte Gestión de Soporte.Report/definition/pages/4affad67a3a355abe57d/page.json
+M07,Gobierno/documentación,Formalizar catálogo de KPIs y diccionario,Alta,Baja,Alto,Bajo,Corto,BI + Funcional,Sí,No,No evidenciado en el PBIP
+M08,Mejora importante,Separar navegación Operativa/Ejecutiva/Técnica,Media,Media,Medio,Bajo,Mediano,BI UX,Sí,No,Reporte Gestión de Soporte.Report/definition/pages/pages.json:L3-L21
+M09,Mejora importante,Normalizar Tags y Estado para cálculos,Media,Media,Medio,Bajo,Mediano,BI Datos,Sí,Sí,Reporte Gestión de Soporte.SemanticModel/definition/tables/DS_Incidencias.tmdl:L10-L63
+M10,Gobierno de datos,Revisar exposición de PII en Assigned To,Alta,Baja,Alto,Bajo,Corto,Data Gov,Sí,Sí,QueryDashInc.csv:L1-L4
