@@ -28,6 +28,10 @@
 - Reducir cálculos iterativos/medidas complejas.
 
 ## Qué debe saber soporte
+
+## Base documental operativa actual
+- Manual de usuario "Gestión de incidentes" (30-ene-2025) como referencia primaria de uso funcional para usuarios finales (filtros, navegación, exportación).
+- Riesgo: no reemplaza documentación técnica de modelo/refresh.
 - Ubicación de artefactos PBIP/PBIR/TMDL.
 - Qué páginas son tooltips y cuáles son operativas.
 - Riesgos de reglas hardcodeadas y de conectividad ADO.
@@ -36,6 +40,6 @@
 - [ ] Refresh OK en periodo.
 - [ ] Conteos base de incidencias consistentes.
 - [ ] Sin cambios no controlados en query WIQL.
-- [ ] KPIs críticos validados con dueño funcional.
+- [ ] KPIs críticos validados con referente de negocio disponible (actualmente no formalizado).
 - [ ] Revisión de performance de páginas principales.
 - [ ] Actualización de bitácora de cambios.

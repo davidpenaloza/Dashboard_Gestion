@@ -16,8 +16,8 @@ El dashboard “Reporte Gestión de Soporte” está **operativo y estructuralme
 
 ## Decisiones requeridas de jefatura
 1. Definir patrocinio de refactor (modelo + gobierno).
-2. Nombrar dueño funcional de KPI/SLA.
-3. Nombrar dueño técnico de conectividad/refresh.
+2. Asignar referente transitorio para KPI/SLA (hoy no existe owner formal).
+3. Asignar referente técnico transitorio para conectividad/refresh (hoy no existe owner formal).
 4. Aprobar plan de mejora por fases (quick wins y cambios estructurales).
 
 ## Plan recomendado

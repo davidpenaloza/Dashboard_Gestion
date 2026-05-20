@@ -34,4 +34,8 @@
 
 ## Observaciones de completitud
 - Proyecto **completo para análisis estático** del estado actual.
-- No evidenciado en PBIP: políticas de refresh en servicio, RLS en workspace, ownership operativo en Fabric/Service.
+- No evidenciado en PBIP: políticas de refresh en servicio, RLS en workspace, responsables operativos en Fabric/Service (no identificados en la evidencia disponible).
+
+## Documentación adicional recibida (fuera del PBIP)
+- Manual de usuario de "Gestión de incidentes" (autor visible: Carolina Silva Gajardo, fecha visible: 30-ene-2025), con foco en filtros, tarjetas, gráficos, detalle, interacción y exportación.
+- Hecho observado: esta es la única documentación operativa/funcional compartida adicional al PBIP en esta revisión.

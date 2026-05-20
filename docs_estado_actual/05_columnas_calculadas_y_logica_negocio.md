@@ -21,5 +21,5 @@
 
 ## Validaciones con negocio requeridas
 - Definición oficial de “disponible”, “inactividad” y “baja disponibilidad”.
-- Vigencia y ownership de reglas por faena/producto.
+- Vigencia y responsable real de reglas por faena/producto (actualmente no formalizado).
 - Tratamiento de tickets sin `Fecha Fin`.

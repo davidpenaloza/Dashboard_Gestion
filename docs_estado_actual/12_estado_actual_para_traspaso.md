@@ -1,6 +1,7 @@
 # 12 - Estado actual para traspaso
 
 ## Qué debe saber una persona nueva
+- Existe manual de usuario "Gestión de incidentes" (30-ene-2025) para operación funcional básica.
 - El proyecto está en formato PBIP (texto) con separación reporte/modelo.
 - La tabla principal es `DS_Incidencias`; la fuente viene de Azure DevOps por WIQL.
 - Existen páginas operativas y páginas técnicas (tooltips/diseño/manual).
@@ -18,15 +19,15 @@
 ## Qué no tocar sin validación
 - Query ID, filtros de página clave, reglas de disponibilidad, mapeo de áreas.
 
-## Dueño funcional requerido para
+## Referente de negocio requerido para
 - Definiciones KPI, SLA, excepciones, semántica de incidencia.
 
-## Dueño técnico requerido para
+## Referente técnico requerido para
 - Conectividad/credenciales ADO, modelado semántico, optimización DAX/M, performance visual.
 
 ## Checklist de traspaso a soporte
 - [ ] Entregar acceso a repo y workspace.
-- [ ] Entregar owner funcional y técnico nominados.
+- [ ] Definir referentes (aunque sean transitorios) para negocio y técnico.
 - [ ] Entregar catálogo de KPIs acordado.
 - [ ] Entregar runbook de fallas de refresh.
 - [ ] Entregar backlog priorizado y estado.

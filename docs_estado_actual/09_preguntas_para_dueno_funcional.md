@@ -1,4 +1,4 @@
-# 09 - Preguntas para dueño funcional/técnico
+# 09 - Preguntas abiertas de validación funcional/técnica
 
 ## Definiciones funcionales/KPI
 1. ¿Qué definición oficial usan para “incidencia” si el dataset incluye `User Story` y `Feature`?
@@ -6,7 +6,7 @@
 3. ¿`DuracionINC` debe excluir fines de semana/feriados?
 
 ## Fuentes / Azure DevOps / WIQL
-4. ¿Quién es dueño del query ID `e2bdb8c8-624b-4561-ac26-14233cd23865`?
+4. ¿Qué persona/equipo administra hoy el query ID `e2bdb8c8-624b-4561-ac26-14233cd23865` si no hay owner formal?
 5. ¿Qué proceso existe para cambios de campos en WIQL?
 6. ¿Existe entorno QA/UAT del query antes de producción?
 

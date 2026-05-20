@@ -24,7 +24,7 @@
 
 ## Riesgos de mantenimiento/gobierno
 - Naming inconsistente (ES/EN, sufijos `_`, placeholders).
-- No evidenciado en PBIP: data dictionary formal y governance owner.
+- No evidenciado en PBIP: data dictionary formal y responsables de gobierno formalmente asignados.
 
 ## Riesgos de datos sensibles/acceso
 - `Assigned To` contiene nombre/correo de personas (dato personal laboral). Evidencia de muestra CSV.【QueryDashInc.csv:L1-L4】
