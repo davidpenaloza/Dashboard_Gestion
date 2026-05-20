@@ -1,0 +1,53 @@
+table De_Para
+	lineageTag: 67e28ea5-644b-458e-ae38-1c90b3d2af38
+
+	column Description
+		lineageTag: 4c9d8178-2320-4542-b357-1b439b4adf84
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Description]
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Nombre completo'
+		lineageTag: 06243113-222f-451b-9a8c-12ad2266ec4c
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nombre completo]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Nombre
+		lineageTag: 2c06cae2-a8ec-4012-85c2-51f0247a8143
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Nombre]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition De_Para = calculated
+		mode: import
+		source =
+				DATATABLE(
+				    "Nombre completo", STRING,
+					"Nombre", STRING,
+				    "Description", STRING,
+				    {
+				        {"Tecnología servidores e infraestructura [SEOC]", "SEOC", "Área resolutora"},
+				        {"Tecnología redes [NOC]", "NOC", "Área resolutora"},
+				        {"Tecnología continuidad operacional faena", "COF", "Área resolutora"},
+				        {"Tecnología gestión digital [SGD]", "SGD", "Área resolutora"},
+				        {"Tecnología ciberseguridad [SOC]", "SOC", "Área resolutora"},
+				        {"Soporte Data & Analitica [SDA]", "SDA", "Área resolutora"},
+				        {"Plataforma Data & Analitica [PDA]", "PDA", "Área resolutora"},
+				        {"Equipo de desarrollo Data & Analitica [EDDA]", "EDDA", "Área resolutora"},
+				        {"Proveedor/Fabricante", "Pr/Fa", "Área resolutora"},
+				        {"Condición operacional", "C/O", "Área resolutora"},
+				        {"Sin Definir", "S/D", "Área resolutora"},
+				        {"Falso Positivo", "F/P", "Área resolutora"}
+				
+				    }
+				)
+
+	annotation PBI_Id = bf82dac64f5740f08824415451472458
+

@@ -1,0 +1,51 @@
+table 'Last Refresh Dataset'
+	lineageTag: 94301660-471f-49ab-a945-e76c192b7f28
+
+	column 'Last Refresh Dataset'
+		dataType: dateTime
+		formatString: dd-mm-yyyy hh:nn
+		lineageTag: 7fb6076b-6d31-4f36-9010-386adb8a231b
+		summarizeBy: none
+		sourceColumn: Last Refresh Dataset
+
+		variation Variación
+			isDefault
+			relationship: 98bb9bac-12c4-4692-a123-bb18247f4993
+			defaultHierarchy: LocalDateTable_3371df3c-8362-4840-9747-a58275d6b372.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isDateTimeCustom":true}
+
+	partition 'Last Refresh Dataset' = m
+		mode: import
+		source = ```
+				let
+				    // Obtén la hora actual en UTC
+				    FechaActual = DateTimeZone.FixedUtcNow(),
+				
+				    // Obtén el año actual
+				    AnioActual = Date.Year(FechaActual),
+				
+				    // Calcular segundo domingo de septiembre
+				    SegundoDomingoSeptiembre = Date.AddDays(#date(AnioActual, 9, 1), 7 + (7 - Date.DayOfWeek(#date(AnioActual, 9, 1)))),
+				
+				    // Calcular primer domingo de abril
+				    PrimerDomingoAbril = Date.AddDays(#date(AnioActual, 4, 1), (7 - Date.DayOfWeek(#date(AnioActual, 4, 1)))),
+				
+				    // Ajusta la zona horaria restando las horas correspondientes
+				    HoraAjustada = 
+				        if Date.From(FechaActual) >= SegundoDomingoSeptiembre or Date.From(FechaActual) < PrimerDomingoAbril 
+				        then DateTimeZone.SwitchZone(FechaActual, -3) // Ajusta a UTC-3 (verano)
+				        else DateTimeZone.SwitchZone(FechaActual, -4), // Ajusta a UTC-4 (invierno)
+				
+				    // Convierte a hora sin zona horaria (opcional, si no necesitas DateTimeZone)
+				    HoraLocalChile = DateTimeZone.RemoveZone(HoraAjustada)
+				in
+				    HoraLocalChile
+				```
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = DateTime
+

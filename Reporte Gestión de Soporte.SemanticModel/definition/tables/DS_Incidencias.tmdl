@@ -1,0 +1,501 @@
+table DS_Incidencias
+	lineageTag: 67e8be11-565c-4cb2-9832-2e014eec1707
+
+	measure UltAct = "Última actualización: "
+		lineageTag: dbafc67d-9121-4826-9f39-cbb564434664
+
+	measure MsjBienvenida = "¡Bienvenid@, " & LEFT(USERPRINCIPALNAME(), FIND("@", USERPRINCIPALNAME()) - 1) & "!"
+		lineageTag: e2a440b4-9e2b-4761-8c7e-96d3a07ef714
+
+	measure IncCerradas =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(DS_Incidencias[ID]),
+			        (
+			            DS_Incidencias[State] = "Closed"
+			            || DS_Incidencias[State] = "Resolved"
+			        )
+			        && CONTAINSSTRING(DS_Incidencias[Tags], "INCIDENCIA")
+			    ),
+			0)
+		formatString: 0
+		lineageTag: 43d9ed90-5cec-4145-8065-54a47dce6ed4
+
+	measure IncEnProceso =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(DS_Incidencias[ID]),
+			        DS_Incidencias[State] = "Active" && CONTAINSSTRING(DS_Incidencias[Tags], "INCIDENCIA")
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: f5c9ca6c-4363-4aff-a72b-3d4af3a728ac
+
+	measure IncAbiertas =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(DS_Incidencias[ID]),
+			        DS_Incidencias[State] = "New" && CONTAINSSTRING(DS_Incidencias[Tags], "INCIDENCIA")
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: deb3d467-bc2f-4a38-8036-eed4b22e5498
+
+	measure IncTotales = DS_Incidencias[IncAbiertas]+DS_Incidencias[IncCerradas]+DS_Incidencias[IncEnProceso]+DS_Incidencias[IncBloqueadas]
+		formatString: 0
+		lineageTag: 05e76d09-9e77-44f3-9336-0d2a195c48ad
+
+	measure IncBloqueadas =
+			
+			COALESCE(
+			    CALCULATE(
+			        DISTINCTCOUNT(DS_Incidencias[ID]),
+			        DS_Incidencias[State] = "Blocked" && CONTAINSSTRING(DS_Incidencias[Tags], "INCIDENCIA")
+			    ),
+			    0
+			)
+		formatString: 0
+		lineageTag: 671a4814-ac99-416d-870a-610a08efb94a
+
+	measure DuracionINC_Promedio = ```
+			
+			var avg_inc =AVERAGE(DS_Incidencias[DuracionINC])
+			RETURN 
+			    if( avg_inc = BLANK(),0,ROUND(avg_inc,0) )
+			```
+		formatString: 0
+		lineageTag: 219da410-4744-4abf-aa7a-b6c5718ccdf0
+
+	measure Inactividad = ```
+			
+			SUMX(
+			    DS_Incidencias, 
+			    IF(
+			        DS_Incidencias[DuracionINC] > 0 && DS_Incidencias[Disponible_SI_NO] = "NO", 
+			        DS_Incidencias[DuracionINC], 
+			        0
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: d7b80339-84d2-4bd7-8268-dbdcab11e054
+
+	measure Disponible = ```
+			
+			SUMX(
+			    DS_Incidencias, 
+			    DS_Incidencias[TiempoTotal] - DS_Incidencias[DuracionINC]
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 45746de6-786f-4a14-ac27-b8d2c21a59a3
+
+	measure 'Baja disponibilidad' = ```
+			
+			SUMX(
+			    DS_Incidencias, 
+			    IF(
+			        DS_Incidencias[DuracionINC] > 0 && DS_Incidencias[Disponible_SI_NO] = "SI", 
+			        DS_Incidencias[DuracionINC], 
+			        0
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 1bb1d7a8-7317-49d7-af03-a8d0833c4078
+
+	measure CantProductos =
+			CALCULATE(
+			    DISTINCTCOUNT(DS_Incidencias[Producto]),
+			    NOT(ISBLANK(DS_Incidencias[Producto]))
+			)
+		formatString: 0
+		lineageTag: 1a9238e8-1270-4029-8b6e-70afd2744b3f
+
+	measure Medida = ". "
+		lineageTag: 8bfc9900-4b9d-4b09-8c97-93342bff49e2
+
+	column YYYYMM = ```
+			FORMAT(DS_Incidencias[Fecha Inicio], "YYYYMM")
+			
+			```
+		lineageTag: de9f3a5d-0176-44fc-b2e6-88b1dd0d2b0a
+		summarizeBy: none
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mes-anio = ```
+			
+			VAR anio = DS_Incidencias[Fecha Inicio].[Año]
+			VAR mes = RIGHT(DS_Incidencias[YYYYMM],2)
+			 VAR mesTexto = 
+			    SWITCH(
+			        mes,
+			        "01", "Ene",
+			        "02", "Feb",
+			        "03", "Mar",
+			        "04", "Abr",
+			        "05", "May",
+			        "06", "Jun",
+			        "07", "Jul",
+			        "08", "Ago",
+			        "09", "Sep",
+			        "10", "Oct",
+			        "11", "Nov",
+			        "12", "Dic",
+			        BLANK() -- Devuelve vacío si el mes no es válido
+			    )
+			RETURN 
+			    IF(ISBLANK(mesTexto), BLANK(), mesTexto & "-" & anio)
+			```
+		lineageTag: ecf204de-f093-405e-8e17-7012221be439
+		summarizeBy: none
+		sortByColumn: YYYYMM
+
+		changedProperty = SortByColumn
+
+		annotation SummarizationSetBy = Automatic
+
+	column DuracionINC = COALESCE(DATEDIFF(DS_Incidencias[Fecha Inicio],DS_Incidencias[Fecha Fin],HOUR),0)
+		formatString: 0
+		lineageTag: fc26a0dc-5f48-41df-8b7b-9892c6b5f7ae
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column FechaTomaDeControl =
+			
+			SWITCH(
+			    TRUE(),
+			    DS_Incidencias[Faena] = "ANT" && DS_Incidencias[Producto] = "Mineral Tracker ANT", DATE(2024, 2, 15),
+			    DS_Incidencias[Faena] = "ANT" && DS_Incidencias[Producto] = "Mineral Tracker 2.0", DATE(2026, 1, 12),
+			    DS_Incidencias[Faena] = "ANT" && DS_Incidencias[Producto] = "SIRO Ácido", DATE(2026, 1, 12),
+			    DS_Incidencias[Faena] = "ANT" && DS_Incidencias[Producto] = "SIRO Apilamiento", DATE(2024, 1, 12),
+			    DS_Incidencias[faena] = "CEN" && DS_Incidencias[producto] = "MT CEN", DATE(2023, 10, 15),
+			    DS_Incidencias[faena] = "CEN" && DS_Incidencias[producto] = "duhovit", DATE(2024, 11, 1),
+			    DS_Incidencias[faena] = "MLP" && DS_Incidencias[producto] = "ADA MLP", DATE(2024, 1, 16),
+			    DS_Incidencias[faena] = "MLP" && DS_Incidencias[producto] = "PDM CAEX MLP", DATE(2024, 8, 15),
+			    DATE(2023, 12, 1)  -- Valor predeterminado si no se cumple ninguna condición
+			)
+		formatString: General Date
+		lineageTag: 1c903a93-9ec7-42c6-a33b-52470bfd1920
+		summarizeBy: none
+
+		variation Variación
+			isDefault
+			relationship: 0c583aa8-fccd-42fd-8832-b03986303fc8
+			defaultHierarchy: LocalDateTable_32bf6e33-81f7-4387-a7fa-10a7e5f067c4.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column TiempoTotal = ```
+			
+			DATEDIFF(DS_Incidencias[FechaTomaDeControl], NOW(), HOUR)
+			
+			```
+		formatString: 0
+		lineageTag: 4590ce14-9f94-4ee1-b44c-b4b8d795ae73
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Area_Resolutora_Front = ```
+			
+			LOOKUPVALUE(
+			    De_Para[Nombre],
+			    De_Para[Nombre completo], DS_Incidencias[Area Resolutora]
+			)
+			
+			```
+		lineageTag: 9405dbc5-3acb-445c-a813-5310c11bad9f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column ID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8f21e5b9-0d6d-4f4a-9320-7d2c10bfee0f
+		summarizeBy: count
+		sourceColumn: ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column Title
+		dataType: string
+		lineageTag: 29da26d9-4864-4b10-af63-ae4d25aa1798
+		summarizeBy: none
+		sourceColumn: Title
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Work Item Type'
+		dataType: string
+		lineageTag: 8f06ece9-8338-4b50-a4f2-4c39639d6b1a
+		summarizeBy: none
+		sourceColumn: Work Item Type
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Assigned To'
+		dataType: string
+		lineageTag: f9c3dbdd-28dd-4486-89ec-081c9fcf84b2
+		summarizeBy: none
+		sourceColumn: Assigned To
+
+		annotation SummarizationSetBy = Automatic
+
+	column State
+		dataType: string
+		lineageTag: 6166c159-26fd-4922-ab84-35fc59f6382f
+		summarizeBy: none
+		sourceColumn: State
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tags
+		dataType: string
+		lineageTag: c86a63c3-5a8f-47af-9288-e1a950e335fd
+		summarizeBy: none
+		sourceColumn: Tags
+
+		annotation SummarizationSetBy = Automatic
+
+	column Torre
+		dataType: string
+		lineageTag: 9f17bd6d-13a5-4b09-aa19-bccd0520b63f
+		summarizeBy: none
+		sourceColumn: Torre
+
+		annotation SummarizationSetBy = Automatic
+
+	column Fuente
+		dataType: string
+		lineageTag: c858ed5c-6778-472f-9ff5-cae976be5243
+		summarizeBy: none
+		sourceColumn: Fuente
+
+		annotation SummarizationSetBy = Automatic
+
+	column Faena
+		dataType: string
+		lineageTag: 12a2ea6c-0465-48f1-84d1-de8d8233db66
+		summarizeBy: none
+		sourceColumn: Faena
+
+		annotation SummarizationSetBy = Automatic
+
+	column DataLake
+		dataType: string
+		lineageTag: fb38aca6-0c6e-455e-a0d0-2baf77f80963
+		summarizeBy: none
+		sourceColumn: DataLake
+
+		annotation SummarizationSetBy = Automatic
+
+	column Componente
+		dataType: string
+		lineageTag: efea57f9-e535-4ba9-9280-910a8a0fc519
+		summarizeBy: none
+		sourceColumn: Componente
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Area Resolutora'
+		dataType: string
+		lineageTag: 71dedf55-9b61-4abd-a881-e77d2d384fb0
+		summarizeBy: none
+		sourceColumn: Area Resolutora
+
+		annotation SummarizationSetBy = Automatic
+
+	column Producto
+		dataType: string
+		lineageTag: 004cccc0-2211-47e0-b4ff-6ca48bd5356c
+		summarizeBy: none
+		sourceColumn: Producto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha Inicio'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ea53cc30-ad4e-41be-bdf5-913e33f4d0c6
+		summarizeBy: none
+		sourceColumn: Fecha Inicio
+
+		variation Variación
+			isDefault
+			relationship: cc40f381-a91c-44d2-8dc2-655bab3ab752
+			defaultHierarchy: LocalDateTable_82ddd1fa-26ab-466d-afb7-f0ec55b1ea1a.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Fecha Fin'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4d0df2dd-8627-4f22-a9e7-cdd3a60e0568
+		summarizeBy: none
+		sourceColumn: Fecha Fin
+
+		variation Variación
+			isDefault
+			relationship: 3476d605-5947-44dd-be31-4e1558bc7617
+			defaultHierarchy: LocalDateTable_89ec19d0-9e0f-4480-9ce5-e6c637372187.'Jerarquía de fechas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Disponible_SI_NO
+		dataType: string
+		lineageTag: aba7bed1-d2b1-440d-a903-de05d8718d6d
+		summarizeBy: none
+		sourceColumn: Disponible_SI_NO
+
+		annotation SummarizationSetBy = Automatic
+
+	column TituloINC =
+			
+			VAR PosicionInicio = SEARCH("INC:", DS_Incidencias[Title], 1, LEN(DS_Incidencias[Title])) + 4
+			RETURN
+			TRIM(MID(DS_Incidencias[Title], PosicionInicio, LEN(DS_Incidencias[Title])))
+		lineageTag: d930aa4e-75ff-4d02-a4b0-774626a81643
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column EstadoHU = IF(DS_Incidencias[State]="New","Backlog",IF(DS_Incidencias[State]="Blocked","Bloqueadas",IF(DS_Incidencias[State]="Closed","Cerradas",IF(DS_Incidencias[State]="Resolved","Cerradas",IF(DS_Incidencias[State]="Active","En Proceso")))))
+		lineageTag: e22c4aec-aaf2-4659-b546-39f60f0c22b1
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Criticidad
+		dataType: string
+		lineageTag: 28d04a61-8c92-4876-8fe0-707f83bcd265
+		summarizeBy: none
+		sourceColumn: Criticidad
+
+		annotation SummarizationSetBy = Automatic
+
+	column SemanaDelMes_FechaInicio = ```
+			
+			VAR PrimerDiaMes = EOMONTH(DS_Incidencias[Fecha Inicio], -1) + 1
+			VAR NumeroSemanaMes = WEEKNUM(DS_Incidencias[Fecha Inicio], 2) - WEEKNUM(PrimerDiaMes, 2) + 1
+			RETURN NumeroSemanaMes
+			
+			```
+		formatString: 0
+		lineageTag: 338a34f8-37ce-4456-8368-01352a028f37
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Link
+		dataType: string
+		lineageTag: 8108fd4a-4918-4a02-b46c-a5edab93ad98
+		summarizeBy: none
+		sourceColumn: Link
+
+		annotation SummarizationSetBy = Automatic
+
+	column Index
+		dataType: int64
+		formatString: 0
+		lineageTag: d903bffd-34b4-46fc-a0ce-64da180974b5
+		summarizeBy: sum
+		sourceColumn: Index
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Guardia Pasiva'
+		dataType: string
+		lineageTag: 0ea07bd4-0fab-4290-888c-e200f108761d
+		summarizeBy: none
+		sourceColumn: Guardia Pasiva
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Descripción Breve'
+		dataType: string
+		lineageTag: 02e4f424-0849-4fba-945e-dfc08e4384dd
+		summarizeBy: none
+		sourceColumn: Descripción Breve
+
+		annotation SummarizationSetBy = Automatic
+
+	column Solución
+		dataType: string
+		lineageTag: ddba5b49-7249-44e3-ac3a-392468809374
+		summarizeBy: none
+		sourceColumn: Solución
+
+		annotation SummarizationSetBy = Automatic
+
+	column Workaround
+		dataType: string
+		lineageTag: 57503ea0-d440-4671-b1ef-6b4b3e7caa35
+		summarizeBy: none
+		sourceColumn: Workaround
+
+		annotation SummarizationSetBy = Automatic
+
+	column DescripcionBreve = IF(DS_Incidencias[Descripción Breve]="N/A" || ISBLANK(DS_Incidencias[Descripción Breve]),DS_Incidencias[TituloINC],DS_Incidencias[Descripción Breve])
+		lineageTag: 264940c3-e832-4f5f-97c4-5440e84c5116
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Workaround_ = IF(ISBLANK(DS_Incidencias[Workaround]),"N/A", DS_Incidencias[Workaround])
+		lineageTag: 8cbfdb91-1470-43d1-8c0d-6dd16cb4b1b0
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Solucion_ = IF(ISBLANK(DS_Incidencias[Solución]),"N/A",DS_Incidencias[Solución])
+		lineageTag: f9dcd6e8-b1a2-4b42-831f-7ceec1641380
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DS_Incidencias = m
+		mode: import
+		source = ```
+				let
+				    url = "https://amsa-data.visualstudio.com",
+				    collection = "",
+				    project = "Soporte",
+				    team = "Soporte Team",
+				    id = "e2bdb8c8-624b-4561-ac26-14233cd23865",
+				
+				    // Create wrapper for VSTS.AccountContents function as a workaround for the static code analysis in Power BI Service.
+				    contents = (o) => VSTS.AccountContents(
+				        url, 
+				        [ 
+				            Version              = Record.FieldOrDefault(Record.FieldOrDefault(o, "Headers", []), "Referer", ""),
+				            IsRetry              = Record.FieldOrDefault(o, "IsRetry", false),
+				            ManualStatusHandling = Record.FieldOrDefault(o, "ManualStatusHandling", {}),
+				            Query                = Record.FieldOrDefault(o, "Query", []),
+				            RelativePath         = Record.FieldOrDefault(o, "RelativePath", null),
+				            Timeout              = Record.FieldOrDefault(o, "Timeout", null)
+				       ]),
+				
+				    Source = Functions[WiqlRunFlatWorkItemQueryById](contents, url, [Collection = collection, Project = project, Team = team], id),
+				    #"Columnas con nombre cambiado" = Table.RenameColumns(Source,{{"Disponible", "Disponible_SI_NO"}})
+				in
+				    #"Columnas con nombre cambiado"
+				```
+
+	annotation PBI_NavigationStepName = Navegación
+
+	annotation PBI_ResultType = Table
+

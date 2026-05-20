@@ -1,0 +1,27 @@
+model Model
+	culture: es-CL
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["Functions","FunctionsNew","DS_Incidencias","Last Refresh Dataset"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DateTableTemplate_1b3b5453-4350-4ba4-b617-44c5d2c8da38
+ref table Functions
+ref table FunctionsNew
+ref table DS_Incidencias
+ref table LocalDateTable_32bf6e33-81f7-4387-a7fa-10a7e5f067c4
+ref table De_Para
+ref table LocalDateTable_82ddd1fa-26ab-466d-afb7-f0ec55b1ea1a
+ref table LocalDateTable_89ec19d0-9e0f-4480-9ce5-e6c637372187
+ref table 'Last Refresh Dataset'
+ref table LocalDateTable_3371df3c-8362-4840-9747-a58275d6b372
+
+ref cultureInfo es-CL
+

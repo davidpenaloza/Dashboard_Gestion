@@ -1,0 +1,20 @@
+relationship 0c583aa8-fccd-42fd-8832-b03986303fc8
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DS_Incidencias.FechaTomaDeControl
+	toColumn: LocalDateTable_32bf6e33-81f7-4387-a7fa-10a7e5f067c4.Date
+
+relationship cc40f381-a91c-44d2-8dc2-655bab3ab752
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DS_Incidencias.'Fecha Inicio'
+	toColumn: LocalDateTable_82ddd1fa-26ab-466d-afb7-f0ec55b1ea1a.Date
+
+relationship 3476d605-5947-44dd-be31-4e1558bc7617
+	joinOnDateBehavior: datePartOnly
+	fromColumn: DS_Incidencias.'Fecha Fin'
+	toColumn: LocalDateTable_89ec19d0-9e0f-4480-9ce5-e6c637372187.Date
+
+relationship 98bb9bac-12c4-4692-a123-bb18247f4993
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'Last Refresh Dataset'.'Last Refresh Dataset'
+	toColumn: LocalDateTable_3371df3c-8362-4840-9747-a58275d6b372.Date
+
